@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity 0.5.0;
 
 import "openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
 
@@ -10,8 +10,6 @@ contract FreeFeeCoin is StandardToken {
     string public name;
     uint8 public decimals = 9;
 
-    uint noOfTokens = 2500000000; // 2,500,000,000 (2.5B)
-
     /**
      * @dev initialize ERC20
      *
@@ -19,10 +17,11 @@ contract FreeFeeCoin is StandardToken {
      * @param _name   token name
      * @param _owner  owner address
      */
-    constructor (string _symbol, string _name) public {
+    constructor (string memory _symbol, string memory _name) public {
         require(bytes(_symbol).length > 0);
         require(bytes(_name).length > 0);
 
+        uint noOfTokens = 2500000000; // 2,500,000,000 (2.5B)
         totalSupply_ = noOfTokens * (10 ** uint(decimals));
         // 2.5E9 tokens initially
 
@@ -40,4 +39,5 @@ contract FreeFeeCoin is StandardToken {
     function getMaxNumberOfTokens() public view returns (uint) {
         return noOfTokens;
     }
-}
+} 
+
